@@ -1,0 +1,16 @@
+{
+  "env": {
+    "browser": true
+  },
+  "extends": [
+    "standard"
+  ],
+  "parser": "babel-eslint",
+  "rules": {
+    "arrow-parens": 2,
+    "comma-dangle": [
+      2,
+      "always-multiline"
+    ]
+  }
+}
