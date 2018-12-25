@@ -11,9 +11,9 @@ npm i @rocketstation/local-storage
 ## Usage
 
 ```javascript
-import LS from '@rocketstation/local-storage'
+import localStorage from '@rocketstation/local-storage'
 
-const ls = LS('key')
+const ls = localStorage('key')
 
 ls.get()
 ls.remove()
