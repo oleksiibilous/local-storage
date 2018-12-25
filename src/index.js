@@ -1,11 +1,13 @@
-import get from './get'
-import remove from './remove'
-import set from './set'
-
-export default class {
-  constructor (key) {
-    this.get = get(key)
-    this.remove = remove(key)
-    this.set = set(key)
+module.exports = function(key) {
+  return {
+    get: function() {
+      return JSON.parse(localStorage.getItem(key)) || {}
+    },
+    remove: function() {
+      localStorage.removeItem(key)
+    },
+    set: function(val) {
+      localStorage.setItem(key, JSON.stringify(val))
+    },
   }
 }

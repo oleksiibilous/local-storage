@@ -13,7 +13,7 @@ npm i @rocketstation/local-storage
 ```javascript
 import LS from '@rocketstation/local-storage'
 
-const ls = new LS('key')
+const ls = LS('key')
 
 ls.get()
 ls.remove()

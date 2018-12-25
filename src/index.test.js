@@ -1,18 +1,23 @@
-import LS from './index'
+const ls = require('./index')
 
-import get from './get'
-import remove from './remove'
-import set from './set'
+const key = 'tst'
 
-jest.mock('./get')
-jest.mock('./remove')
-jest.mock('./set')
+it('calls localstorage.getItem with specified key', () => {
+  ls(key).get()
 
-const key = 'key'
-const ls = new LS(key)
+  expect(localStorage.getItem).toBeCalledWith(key)
+})
 
-it('initiates get function with key', () => { expect(get).toBeCalledWith(key) })
+it('calls localstorage.removeItem with specified key', () => {
+  ls(key).remove()
 
-it('initiates remove function with key', () => { expect(remove).toBeCalledWith(key) })
+  expect(localStorage.removeItem).toBeCalledWith(key)
+})
 
-it('initiates set function with key', () => { expect(set).toBeCalledWith(key) })
+it('calls localstorage.setItem with specified key & val', () => {
+  const val = 'tst'
+
+  ls(key).set(val)
+
+  expect(localStorage.setItem).toBeCalledWith(key, JSON.stringify(val))
+})
