@@ -1,23 +1,58 @@
-const ls = require('./index')
+const create = require('./index')
 
-const key = 'tst'
+const key = 'my-personal-bubble'
 
-it('calls localstorage.getItem with specified key', () => {
-  ls(key).get()
+const ls = create(key)
 
-  expect(localStorage.getItem).toBeCalledWith(key)
+beforeEach(() => {
+  localStorage.clear()
 })
 
-it('calls localstorage.removeItem with specified key', () => {
-  ls(key).remove()
+test('get', () => {
+  ls.get()
 
-  expect(localStorage.removeItem).toBeCalledWith(key)
+  expect(localStorage.getItem).toHaveBeenLastCalledWith(key)
 })
 
-it('calls localstorage.setItem with specified key & val', () => {
-  const val = 'tst'
+test('set', () => {
+  const next = { foo: 'bar' }
 
-  ls(key).set(val)
+  ls.set(next)
 
-  expect(localStorage.setItem).toBeCalledWith(key, JSON.stringify(val))
+  expect(localStorage.setItem).toHaveBeenLastCalledWith(
+    key,
+    JSON.stringify(next)
+  )
+})
+
+test('update', () => {
+  const prev = { foo: 'bar' }
+  const next = { bar: 'foo' }
+
+  ls.set(prev)
+  ls.update(next)
+
+  expect(localStorage.setItem).toHaveBeenLastCalledWith(
+    key,
+    JSON.stringify(Object.assign({}, prev, next))
+  )
+})
+
+test('add', () => {
+  const k = 'foo'
+  const v = 'bar'
+
+  ls.add(k, v)
+
+  expect(localStorage.setItem).toHaveBeenLastCalledWith(
+    key,
+    JSON.stringify({ [k]: v })
+  )
+})
+
+test('remove', () => {
+  ls.set({ foo: 'bar' })
+  ls.remove('foo')
+
+  expect(localStorage.setItem).toHaveBeenLastCalledWith(key, JSON.stringify({}))
 })

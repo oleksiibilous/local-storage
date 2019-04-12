@@ -1,6 +1,6 @@
 # Local Storage
 
-Local Storage creates helpers to work with specific items inside local storage
+Local Storage creates your personal bubble inside local storage. It assigns object to specific key and returns helpers for modifying it
 
 ## Installation
 
@@ -15,9 +15,20 @@ import localStorage from '@rocketstation/local-storage'
 
 const ls = localStorage('key')
 
-ls.get()
-ls.remove()
-ls.set({})
+ls.get() // {}
+
+ls.set({ foo: 'bar' })
+ls.get() // { foo: 'bar' }
+
+ls.remove('foo')
+ls.get() // {}
+
+ls.add('foo', 'bar')
+ls.get() // { foo: 'bar }
+
+ls.update({ bar: 'foo' })
+ls.get() // { foo: 'bar,  bar: 'foo'  }
+
 ```
 
 ## Motivation

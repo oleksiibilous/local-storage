@@ -14,7 +14,7 @@
     "Oleksii Bilous <oleksiibilous@rstation.io> (https://rstation.io)",
     "Oleksii Pysanko <oleksiipysanko@rstation.io> (https://rstation.io)"
   ],
-  "description": "creates helpers to work with specific items inside local storage",
+  "description": "creates your personal bubble inside local storage. It assigns object to specific key and returns helpers for modifying it",
   "devDependencies": {
     "@babel/cli": "7",
     "@babel/core": "7",
@@ -23,13 +23,15 @@
     "babel-preset-minify": "0.5",
     "cross-env": "5",
     "eslint": "5",
-    "eslint-config-prettier": "3",
+    "eslint-config-prettier": "4",
     "eslint-config-standard": "12",
     "eslint-plugin-import": "2",
+    "eslint-plugin-jest": "22",
     "eslint-plugin-node": "8",
+    "eslint-plugin-prettier": "3",
     "eslint-plugin-promise": "4",
     "eslint-plugin-standard": "4",
-    "jest": "23",
+    "jest": "24",
     "jest-localstorage-mock": "2",
     "prettier": "1"
   },
@@ -47,5 +49,5 @@
     "build": "rm -rf build && cross-env NODE_ENV=production babel src -d build --ignore src/**/*.test.js",
     "test": "jest src"
   },
-  "version": "2.0.1"
+  "version": "3.0.0"
 }
